@@ -1,0 +1,40 @@
+object FormOptions: TFormOptions
+  Left = 349
+  Height = 84
+  Top = 360
+  Width = 230
+  BorderStyle = bsSingle
+  Caption = 'Options'
+  ClientHeight = 84
+  ClientWidth = 230
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.2.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 12
+    Top = 16
+    Width = 34
+    Caption = 'Width:'
+    ParentColor = False
+  end
+  object UpDown1: TUpDown
+    Left = 104
+    Height = 23
+    Top = 8
+    Width = 17
+    Associate = EditWidth
+    Min = 1
+    Position = 10
+    TabOrder = 0
+  end
+  object EditWidth: TEdit
+    Left = 56
+    Height = 23
+    Top = 8
+    Width = 48
+    NumbersOnly = True
+    OnChange = EditWidthChange
+    TabOrder = 1
+    Text = '10'
+  end
+end

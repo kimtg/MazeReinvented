@@ -1,0 +1,31 @@
+object FormMain: TFormMain
+  Left = 256
+  Height = 240
+  Top = 122
+  Width = 320
+  Caption = 'Maze Reinvented'
+  Color = clWhite
+  Menu = MainMenu1
+  LCLVersion = '2.0.2.0'
+  object MainMenu1: TMainMenu
+    left = 24
+    top = 168
+    object MenuFile: TMenuItem
+      Caption = '&File'
+      object MenuDraw: TMenuItem
+        Caption = '&Draw'
+        ShortCut = 116
+        OnClick = MenuDrawClick
+      end
+      object MenuSolve: TMenuItem
+        Caption = '&Solve'
+        ShortCut = 120
+        OnClick = MenuSolveClick
+      end
+    end
+    object MenuOptions: TMenuItem
+      Caption = '&Options...'
+      OnClick = MenuOptionsClick
+    end
+  end
+end
