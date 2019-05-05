@@ -6,16 +6,18 @@ object FormMain: TFormMain
   Caption = 'Maze Reinvented'
   Color = clWhite
   Menu = MainMenu1
+  OnCreate = MenuGenerateClick
+  OnKeyDown = FormKeyDown
   LCLVersion = '2.0.2.0'
   object MainMenu1: TMainMenu
     left = 24
     top = 168
     object MenuFile: TMenuItem
       Caption = '&File'
-      object MenuDraw: TMenuItem
-        Caption = '&Draw'
+      object MenuGenerate: TMenuItem
+        Caption = '&Generate'
         ShortCut = 116
-        OnClick = MenuDrawClick
+        OnClick = MenuGenerateClick
       end
       object MenuSolve: TMenuItem
         Caption = '&Solve'

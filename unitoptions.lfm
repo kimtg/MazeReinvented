@@ -1,11 +1,11 @@
 object FormOptions: TFormOptions
   Left = 349
-  Height = 84
+  Height = 53
   Top = 360
   Width = 230
   BorderStyle = bsSingle
   Caption = 'Options'
-  ClientHeight = 84
+  ClientHeight = 53
   ClientWidth = 230
   Position = poOwnerFormCenter
   LCLVersion = '2.0.2.0'
