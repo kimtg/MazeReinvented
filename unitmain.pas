@@ -65,13 +65,11 @@ begin
       //FormMain.canvas.Pixels[x2*wallsize,y2*wallsize] := clGreen;
       if mat[y2,x2+1] = wall then // horizontal
       begin
-        FormMain.canvas.MoveTo(x2*wallsize, y2*wallsize);
-        FormMain.canvas.LineTo((x2+2)*wallsize, y2*wallsize);
+        FormMain.canvas.Line(x2*wallsize, y2*wallsize, (x2+2)*wallsize, y2*wallsize);
       end;
       if mat[y2+1,x2] = wall then // vertical
       begin
-        FormMain.canvas.MoveTo(x2*wallsize, y2*wallsize);
-        FormMain.canvas.LineTo(x2*wallsize, (y2+2)*wallsize);
+        FormMain.canvas.Line(x2*wallsize, y2*wallsize, x2*wallsize, (y2+2)*wallsize);
       end;
     end;
 
@@ -172,8 +170,7 @@ begin
   curx := 1;
   cury := 1;
   canvas.Pen.Color := ColorCur;
-  canvas.MoveTo(0*wallsize, 1*wallsize);
-  canvas.lineto(curx*wallsize, cury*wallsize);
+  canvas.line(0*wallsize, 1*wallsize, curx*wallsize, cury*wallsize);
 end;
 
 procedure TFormMain.FormKeyDown(Sender: TObject; var Key: Word;
@@ -203,8 +200,7 @@ begin
     mat[oldy,oldx] := clear;
     canvas.Pen.Color := ColorDeadEnd;
   end;
-  canvas.MoveTo(oldx*wallsize, oldy*wallsize);
-  canvas.lineto(curx*wallsize, cury*wallsize);
+  canvas.Line(oldx*wallsize, oldy*wallsize, curx*wallsize, cury*wallsize);
   if not finished and (curx = maxx - 1) and (cury = maxy - 1) then
   begin
     finished := true;
