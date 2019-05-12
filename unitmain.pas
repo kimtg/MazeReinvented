@@ -39,6 +39,7 @@ var
   ColorWall: tcolor = clGray;
   ColorCur: tcolor = clGreen;
   ColorDeadEnd: tcolor = clRed;
+  finished: boolean = false;
 
 implementation
 
@@ -93,6 +94,7 @@ var
   x, y, dir: integer;
   HasWork: boolean;
 begin
+  finished := false;
   maxy := FormMain.ClientHeight div wallsize div 2 * 2;
   maxx := FormMain.ClientWidth div wallsize div 2 * 2;
   setlength(mat, maxy + 2, maxx + 2);
@@ -203,7 +205,11 @@ begin
   end;
   canvas.MoveTo(oldx*wallsize, oldy*wallsize);
   canvas.lineto(curx*wallsize, cury*wallsize);
-  if (curx = maxx - 1) and (cury = maxy - 1) then ShowMessage('Congratulations!');
+  if not finished and (curx = maxx - 1) and (cury = maxy - 1) then
+  begin
+    finished := true;
+    ShowMessage('Congratulations!');
+  end;
 end;
 
 procedure TFormMain.MenuOptionsClick(Sender: TObject);
