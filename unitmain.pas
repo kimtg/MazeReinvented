@@ -194,7 +194,7 @@ begin
       if (curx > 1) and (mat[cury, curx - 1] <> wall) then
         Dec(curx, 2);
     vk_right:
-      if mat[cury, curx + 1] <> wall then
+      if (curx < maxx - 1) and (mat[cury, curx + 1] <> wall) then
         Inc(curx, 2);
   end;
   if mat[cury, curx] <> visited then
