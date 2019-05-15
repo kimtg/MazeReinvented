@@ -19,6 +19,8 @@ type
     MenuOptions: TMenuItem;
     MenuSolve: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure FormPaint(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure MenuGenerateClick(Sender: TObject);
     procedure MenuOptionsClick(Sender: TObject);
     procedure MenuSolveClick(Sender: TObject);
@@ -41,6 +43,7 @@ var
   ColorCur: tcolor = clGreen;
   ColorDeadEnd: tcolor = clRed;
   finished: boolean = False;
+  bm: tbitmap;
 
 implementation
 
@@ -55,23 +58,25 @@ procedure DrawMat();
 var
   x, y, x2, y2: integer;
 begin
-  FormMain.canvas.Clear;
-  FormMain.canvas.Pen.Width := wallsize div 4;
-  FormMain.canvas.pen.color := colorwall;
+  bm.Width:=formmain.ClientWidth;
+  bm.Height:=formmain.ClientHeight;
+  bm.canvas.brush.color:=clwhite;
+  bm.canvas.fillrect(bm.canvas.ClipRect);
+  bm.canvas.Pen.Width := wallsize div 4;
+  bm.canvas.pen.color := colorwall;
   for y := 0 to maxy div 2 do
     for x := 0 to maxx div 2 do
     begin
       x2 := x * 2;
       y2 := y * 2;
-      //FormMain.canvas.Pixels[x2*wallsize,y2*wallsize] := clGreen;
       if mat[y2, x2 + 1] = wall then // horizontal
       begin
-        FormMain.canvas.Line(x2 * wallsize, y2 * wallsize, (x2 + 2) *
+        bm.canvas.Line(x2 * wallsize, y2 * wallsize, (x2 + 2) *
           wallsize, y2 * wallsize);
       end;
       if mat[y2 + 1, x2] = wall then // vertical
       begin
-        FormMain.canvas.Line(x2 * wallsize, y2 * wallsize, x2 * wallsize,
+        bm.canvas.Line(x2 * wallsize, y2 * wallsize, x2 * wallsize,
           (y2 + 2) * wallsize);
       end;
     end;
@@ -83,7 +88,7 @@ begin
     while x < maxx do
     begin
       if mat[y, x] = visited then
-        FormMain.canvas.Pixels[x * wallsize, y * wallsize] := ColorDeadEnd;
+        bm.canvas.Pixels[x * wallsize, y * wallsize] := ColorDeadEnd;
       Inc(x, 2);
     end;
     Inc(y, 2);
@@ -100,8 +105,8 @@ begin
   maxx := FormMain.ClientWidth div wallsize div 2 * 2;
   setlength(mat, maxy + 2, maxx + 2);
   // clear
-  for y := 0 to maxy do
-    for x := 0 to maxx do
+  for y := 0 to maxy + 1 do
+    for x := 0 to maxx + 1 do
     begin
       mat[y, x] := Clear;
     end;
@@ -173,8 +178,9 @@ begin
   curx := 1;
   cury := 1;
   mat[cury, curx] := visited;
-  canvas.Pen.Color := ColorCur;
-  canvas.line(0 * wallsize, 1 * wallsize, curx * wallsize, cury * wallsize);
+  bm.canvas.Pen.Color := ColorCur;
+  bm.canvas.line(0 * wallsize, 1 * wallsize, curx * wallsize, cury * wallsize);
+  invalidate;
 end;
 
 procedure TFormMain.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -199,20 +205,31 @@ begin
   end;
   if mat[cury, curx] <> visited then
   begin
-    mat[cury, curx] := visited;
-    canvas.Pen.Color := ColorCur;
+    bm.canvas.Pen.Color := ColorCur;
   end
   else
   begin
     mat[oldy, oldx] := Clear;
     canvas.Pen.Color := ColorDeadEnd;
   end;
-  canvas.Line(oldx * wallsize, oldy * wallsize, curx * wallsize, cury * wallsize);
+  mat[cury, curx] := visited;
+  bm.canvas.Line(oldx * wallsize, oldy * wallsize, curx * wallsize, cury * wallsize);
   if not finished and (curx = maxx - 1) and (cury = maxy - 1) then
   begin
     finished := True;
     ShowMessage('Congratulations!');
   end;
+  invalidate;
+end;
+
+procedure TFormMain.FormPaint(Sender: TObject);
+begin
+  canvas.draw(0, 0, bm);
+end;
+
+procedure TFormMain.FormShow(Sender: TObject);
+begin
+  MenuGenerateClick(nil);
 end;
 
 procedure TFormMain.MenuOptionsClick(Sender: TObject);
@@ -261,8 +278,10 @@ begin
     end;
   until not HasWork;
   DrawMat;
+  Invalidate;
 end;
 
 begin
   randomize;
+  bm:=tbitmap.create;
 end.
