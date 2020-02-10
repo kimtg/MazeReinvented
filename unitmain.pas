@@ -210,16 +210,16 @@ begin
   else
   begin
     mat[oldy, oldx] := Clear;
-    canvas.Pen.Color := ColorDeadEnd;
+    bm.canvas.Pen.Color := ColorDeadEnd;
   end;
   mat[cury, curx] := visited;
   bm.canvas.Line(oldx * wallsize, oldy * wallsize, curx * wallsize, cury * wallsize);
+  invalidate;
   if not finished and (curx = maxx - 1) and (cury = maxy - 1) then
   begin
     finished := True;
     ShowMessage('Congratulations!');
   end;
-  invalidate;
 end;
 
 procedure TFormMain.FormPaint(Sender: TObject);
