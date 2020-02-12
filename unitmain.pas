@@ -31,7 +31,7 @@ type
   end;
 
 type
-  tmat = (Clear, wall, current, visited, deadend);
+  tmat = (clear, wall, current, visited, deadend);
 
 var
   FormMain: TFormMain;
@@ -39,7 +39,7 @@ var
   mat: array of array of tmat;
   maxx, maxy: integer;
   curx, cury: integer;
-  ColorWall: tcolor = clGray;
+  ColorWall: tcolor = clBlack;
   ColorCur: tcolor = clGreen;
   ColorDeadEnd: tcolor = clRed;
   finished: boolean = False;
@@ -60,7 +60,7 @@ var
 begin
   bm.Width:=formmain.ClientWidth;
   bm.Height:=formmain.ClientHeight;
-  bm.canvas.brush.color:=clwhite;
+  bm.canvas.brush.color:=clWhite;
   bm.canvas.fillrect(bm.canvas.ClipRect);
   bm.canvas.Pen.Width := wallsize div 4;
   bm.canvas.pen.color := colorwall;
@@ -239,7 +239,7 @@ end;
 
 function MatBlocked(x, y: integer): integer;
 begin
-  if mat[y, x] = Clear then
+  if mat[y, x] = clear then
     Result := 0
   else
     Result := 1;
@@ -262,13 +262,13 @@ begin
           MatBlocked(x - 1, y) + MatBlocked(x, y + 1) + MatBlocked(x, y - 1) >= 3) then
         begin
           mat[y, x] := visited;
-          if mat[y - 1, x] = Clear then
+          if mat[y - 1, x] = clear then
             mat[y - 1, x] := deadend;
-          if mat[y + 1, x] = Clear then
+          if mat[y + 1, x] = clear then
             mat[y + 1, x] := deadend;
-          if mat[y, x - 1] = Clear then
+          if mat[y, x - 1] = clear then
             mat[y, x - 1] := deadend;
-          if mat[y, x + 1] = Clear then
+          if mat[y, x + 1] = clear then
             mat[y, x + 1] := deadend;
           HasWork := True;
         end;
