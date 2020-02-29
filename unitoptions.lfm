@@ -9,7 +9,7 @@ object FormOptions: TFormOptions
   ClientHeight = 53
   ClientWidth = 161
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 8
     Height = 12
@@ -34,7 +34,6 @@ object FormOptions: TFormOptions
     Top = 8
     Width = 48
     NumbersOnly = True
-    OnChange = EditWidthChange
     TabOrder = 1
     Text = '10'
   end

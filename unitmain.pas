@@ -101,6 +101,7 @@ var
   HasWork: boolean;
 begin
   finished := False;
+  wallsize := StrToIntDef(unitoptions.FormOptions.EditWidth.Text, wallsize);
   maxy := FormMain.ClientHeight div wallsize div 2 * 2;
   maxx := FormMain.ClientWidth div wallsize div 2 * 2;
   setlength(mat, maxy + 2, maxx + 2);

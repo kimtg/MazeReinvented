@@ -16,7 +16,6 @@ type
     EditWidth: TEdit;
     Label1: TLabel;
     UpDown1: TUpDown;
-    procedure EditWidthChange(Sender: TObject);
   private
 
   public
@@ -33,11 +32,6 @@ uses unitmain;
 {$R *.lfm}
 
 { TFormOptions }
-
-procedure TFormOptions.EditWidthChange(Sender: TObject);
-begin
-    unitmain.wallsize := strtoint(editwidth.Text);
-end;
 
 end.
 
