@@ -87,7 +87,7 @@ begin
     x := 1;
     while x < maxx do
     begin
-      if mat[y, x] = visited then
+      if mat[y, x] = deadend then
         bm.canvas.Pixels[x * wallsize, y * wallsize] := ColorDeadEnd;
       Inc(x, 2);
     end;
@@ -258,10 +258,10 @@ begin
       x := 1;
       while x < maxx do
       begin
-        if (mat[y, x] <> visited) and (MatBlocked(x + 1, y) +
+        if (mat[y, x] <> deadend) and (MatBlocked(x + 1, y) +
           MatBlocked(x - 1, y) + MatBlocked(x, y + 1) + MatBlocked(x, y - 1) >= 3) then
         begin
-          mat[y, x] := visited;
+          mat[y, x] := deadend;
           if mat[y - 1, x] = clear then
             mat[y - 1, x] := deadend;
           if mat[y + 1, x] = clear then
