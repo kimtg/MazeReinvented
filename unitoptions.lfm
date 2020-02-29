@@ -1,14 +1,15 @@
 object FormOptions: TFormOptions
-  Left = 349
+  Left = 257
   Height = 53
-  Top = 360
+  Top = 399
   Width = 161
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Options'
   ClientHeight = 53
   ClientWidth = 161
-  Position = poOwnerFormCenter
+  Position = poMainFormCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 8
