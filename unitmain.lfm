@@ -25,10 +25,11 @@ object FormMain: TFormMain
         ShortCut = 120
         OnClick = MenuSolveClick
       end
-    end
-    object MenuOptions: TMenuItem
-      Caption = '&Options...'
-      OnClick = MenuOptionsClick
+      object MenuOptions: TMenuItem
+        Caption = '&Options...'
+        ShortCut = 117
+        OnClick = MenuOptionsClick
+      end
     end
   end
 end
