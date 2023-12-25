@@ -189,6 +189,7 @@ procedure TFormMain.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftSta
 var
   oldx, oldy: integer;
 begin
+  if finished then exit;
   oldx := curx;
   oldy := cury;
   case key of

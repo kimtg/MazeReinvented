@@ -9,10 +9,10 @@ object FormMain: TFormMain
   OnKeyDown = FormKeyDown
   OnPaint = FormPaint
   OnShow = FormShow
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.0.0.3'
   object MainMenu1: TMainMenu
-    left = 24
-    top = 168
+    Left = 24
+    Top = 168
     object MenuFile: TMenuItem
       Caption = '&File'
       object MenuGenerate: TMenuItem
