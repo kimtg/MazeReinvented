@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Menus, lcltype;
+  StdCtrls, Menus, lcltype, math;
 
 type
 
@@ -107,6 +107,7 @@ begin
   finished := False;
   wallsize := StrToIntDef(unitoptions.FormOptions.EditWidth.Text, wallsize);
   if wallsize <= 0 then wallsize := 1;
+  if wallsize > min(ClientHeight, ClientWidth) div 2 then wallsize := min(ClientHeight, ClientWidth) div 2;
   maxy := FormMain.ClientHeight div wallsize div 2 * 2;
   maxx := FormMain.ClientWidth div wallsize div 2 * 2;
   setlength(mat, maxy + 2, maxx + 2);

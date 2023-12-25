@@ -10,7 +10,7 @@ object FormOptions: TFormOptions
   ClientWidth = 161
   Position = poMainFormCenter
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '3.0.0.3'
   object Label1: TLabel
     Left = 8
     Height = 12
@@ -25,6 +25,7 @@ object FormOptions: TFormOptions
     Top = 8
     Width = 17
     Associate = EditWidth
+    Max = 10000
     Min = 1
     Position = 10
     TabOrder = 0
