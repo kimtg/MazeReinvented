@@ -81,6 +81,7 @@ begin
       end;
     end;
 
+  bm.canvas.Brush.color := ColorDeadEnd;
   y := 1;
   while y < maxy do
   begin
@@ -88,7 +89,10 @@ begin
     while x < maxx do
     begin
       if mat[y, x] = deadend then
-        bm.canvas.Pixels[x * wallsize, y * wallsize] := ColorDeadEnd;
+//        bm.canvas.Pixels[x * wallsize, y * wallsize] := ColorDeadEnd;
+
+        bm.canvas.FillRect(round((x - 0.5) * wallsize), round((y - 0.5) * wallsize),
+                              round((x + 0.5) * wallsize), round((y + 0.5) * wallsize));
       Inc(x, 2);
     end;
     Inc(y, 2);
