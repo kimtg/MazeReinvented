@@ -27,8 +27,6 @@ var
 
 implementation
 
-uses unitmain;
-
 {$R *.lfm}
 
 { TFormOptions }

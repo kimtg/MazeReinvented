@@ -10,7 +10,6 @@ object FormOptions: TFormOptions
   ClientWidth = 161
   Position = poMainFormCenter
   ShowInTaskBar = stAlways
-  LCLVersion = '3.0.0.3'
   object Label1: TLabel
     Left = 8
     Height = 12
